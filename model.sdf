@@ -312,6 +312,28 @@
         </ode>
       </physics>
     </joint>
+
+    <include>
+      <uri>model://hokuyo</uri>
+      <pose>0.235 0 0.25 0 0 0</pose>
+    </include>
+    <joint name="laser_joint" type="revolute">
+      <child>hokuyo::link</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <use_parent_model_frame>true</use_parent_model_frame>
+      </axis>
+      <physics>
+        <ode>
+          <limit>
+            <cfm>0.000000</cfm>
+            <erp>0.900000</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+
     <plugin name="husky_diff_controller" filename="libhusky_gazebo_plugins.so">
       <alwaysOn>true</alwaysOn>
       <updateRate>100.0</updateRate>
@@ -323,5 +345,6 @@
       <wheelDiameter>0.3555</wheelDiameter>
       <torque>35</torque>
     </plugin>
+
   </model>
 </sdf>
